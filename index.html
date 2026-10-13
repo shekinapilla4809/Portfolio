@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Shekina Pilla's personal portfolio featuring websites, web apps, data science, AI, computer vision, quantum computing and Instagram creator pages.">
+<meta name="theme-color" content="#090b16">
+<title>ShekinaVerse | Shekina Pilla</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#080a14;--panel:#111526;--panel2:#171d32;
+ --text:#f5f5ff;--muted:#a2abc4;--border:#292e48;
+ --purple:#a78bfa;--pink:#f472d0;--blue:#63b3ff;
+ --green:#70e1b1;--shadow:0 18px 55px #0003;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+ margin:0;background:var(--bg);color:var(--text);
+ font-family:Inter,system-ui,sans-serif;line-height:1.65;
+ transition:background .25s,color .25s;
+}
+body.light{
+ --bg:#f5f6fc;--panel:#fff;--panel2:#edf0fa;
+ --text:#20223b;--muted:#626b85;--border:#dfe2f0;
+ --shadow:0 15px 40px #242b4810;
+}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{
+ outline:2px solid var(--purple);outline-offset:3px
+}
+.wrap{width:min(1160px,91%);margin:auto}
+.site-header{
+ position:sticky;top:0;z-index:20;
+ display:flex;align-items:center;justify-content:space-between;
+ gap:18px;min-height:72px;padding:10px max(4.5%,calc((100% - 1200px)/2));
+ background:color-mix(in srgb,var(--bg) 91%,transparent);
+ border-bottom:1px solid var(--border);backdrop-filter:blur(18px)
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;white-space:nowrap}
+.brand-mark{
+ display:grid;place-items:center;width:39px;height:39px;border-radius:13px;
+ color:white;background:linear-gradient(135deg,#8b5cf6,#ec4899);
+ box-shadow:0 0 25px #a855f755;font-size:22px
+}
+.brand small{display:block;font-size:9px;color:var(--muted);letter-spacing:2px}
+.nav{display:flex;align-items:center;gap:21px}
+.nav a{font-size:11px;color:var(--muted);font-weight:700}
+.nav a:hover{color:var(--purple)}
+.header-actions{display:flex;align-items:center;gap:9px}
+.icon-btn,.menu-btn{
+ display:grid;place-items:center;width:38px;height:38px;
+ border:1px solid var(--border);border-radius:12px;
+ background:var(--panel);cursor:pointer
+}
+.menu-btn{display:none}
+.eyebrow{
+ margin:0 0 10px;color:var(--purple);font-size:10px;
+ font-weight:800;letter-spacing:2.5px;text-transform:uppercase
+}
+.hero{
+ min-height:520px;display:grid;grid-template-columns:1.1fr .9fr;
+ gap:38px;align-items:center;padding-top:60px;padding-bottom:60px
+}
+.pill{
+ display:inline-flex;align-items:center;gap:8px;padding:7px 12px;
+ border:1px solid var(--border);background:var(--panel);
+ border-radius:30px;color:var(--muted);font-size:10px;margin-bottom:18px
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+h1{font-size:clamp(39px,5.4vw,69px);line-height:1.06;letter-spacing:-3px;margin:0 0 18px}
+.gradient{
+ color:transparent;background:linear-gradient(100deg,var(--purple),var(--pink),var(--blue));
+ background-clip:text;-webkit-background-clip:text
+}
+.hero h2{font-size:16px;margin:0 0 15px;font-weight:650}
+.hero p.description{font-size:13px;color:var(--muted);max-width:560px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:23px}
+.btn{
+ display:inline-flex;justify-content:center;align-items:center;gap:9px;
+ padding:11px 16px;border:1px solid var(--border);border-radius:11px;
+ font-size:11px;font-weight:800;cursor:pointer;transition:.2s
+}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.btn.primary{border:0;color:#fff;background:linear-gradient(110deg,#8059f7,#d653b7)}
+.btn.ghost{background:var(--panel)}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:30px}
+.stats strong{display:block;font-size:20px}
+.stats span{display:block;font-size:10px;color:var(--muted)}
+.hero-art{
+ position:relative;min-height:360px;display:grid;place-items:center;
+ overflow:hidden;border:1px solid var(--border);border-radius:27px;
+ background:radial-gradient(ellipse at 65% 25%,#50318577,transparent 45%),
+ linear-gradient(145deg,var(--panel2),var(--panel))
+}
+.orbit{position:absolute;border:1px solid #a78bfa50;border-radius:50%;width:270px;height:270px;animation:spin 24s linear infinite}
+.orbit.two{width:330px;height:190px;transform:rotate(50deg);animation-direction:reverse}
+@keyframes spin{to{rotate:360deg}}
+.code-card{
+ position:relative;z-index:2;width:82%;padding:0 18px 20px;
+ border:1px solid #7771a3;border-radius:15px;background:#0c1020;
+ box-shadow:0 25px 70px #0006;transform:rotate(-2deg)
+}
+.code-head{display:flex;align-items:center;gap:6px;height:42px;border-bottom:1px solid #272d46;font-size:10px;color:#a6b2d3}
+.dot{width:8px;height:8px;border-radius:50%;background:#fb7185}
+.dot:nth-child(2){background:#facc15}.dot:nth-child(3){background:#4ade80}
+.code-head span{margin-left:auto}
+.code-card pre{margin:15px 0 0;white-space:pre-wrap;color:#dbe5ff;font:12px/2 ui-monospace,Consolas,monospace}
+.c-purple{color:#c4a7ff}.c-blue{color:#82c7ff}.c-green{color:#a6f3bc}
+.float{
+ position:absolute;z-index:3;padding:8px 11px;border:1px solid var(--border);
+ background:var(--panel2);border-radius:10px;font-size:10px;font-weight:800;
+ box-shadow:var(--shadow)
+}
+.float.f1{top:13%;left:5%;color:var(--blue)}
+.float.f2{right:5%;bottom:14%;color:var(--pink)}
+.section{padding:55px 0;border-top:1px solid var(--border)}
+.section-head{display:flex;gap:13px;align-items:flex-start;margin-bottom:25px}
+.section-symbol{
+ flex-shrink:0;display:grid;place-items:center;width:42px;height:42px;
+ border-radius:13px;background:linear-gradient(135deg,#8059f7,#d653b7);color:white;font-size:20px
+}
+.section-head h2{font-size:clamp(23px,3vw,32px);letter-spacing:-1px;line-height:1.25;margin:0}
+.section-head .sub{color:var(--muted);font-size:12px;margin:7px 0 0}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px}
+.about-copy,.info-panel{
+ padding:22px;border:1px solid var(--border);border-radius:17px;background:var(--panel)
+}
+.about-copy p{font-size:13px;color:var(--muted);margin:0 0 14px}
+.info-list{display:grid;gap:13px}
+.info-row{display:flex;gap:12px;align-items:center}
+.info-icon{
+ display:grid;place-items:center;flex-shrink:0;width:35px;height:35px;
+ border-radius:11px;background:var(--panel2);color:var(--purple)
+}
+.info-row small{display:block;color:var(--muted);font-size:10px}
+.info-row strong,.info-row a{font-size:11px;overflow-wrap:anywhere}
+.note{font-size:10px;color:var(--muted);margin-top:12px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:13px;margin-bottom:22px;flex-wrap:wrap}
+.search{
+ display:flex;gap:9px;align-items:center;min-width:min(280px,100%);
+ padding:0 13px;height:42px;border:1px solid var(--border);
+ border-radius:11px;background:var(--panel)
+}
+.search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--text);font-size:12px}
+.filters{display:flex;gap:7px;flex-wrap:wrap}
+.filter{
+ padding:8px 12px;border:1px solid var(--border);border-radius:9px;
+ background:var(--panel);color:var(--muted);font-size:10px;font-weight:700;cursor:pointer
+}
+.filter.active,.filter:hover{border-color:var(--purple);color:var(--purple);background:var(--panel2)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.card{
+ min-width:0;overflow:hidden;border:1px solid var(--border);border-radius:17px;
+ background:var(--panel);transition:transform .2s,border-color .2s,box-shadow .2s
+}
+.card:hover{transform:translateY(-5px);border-color:var(--purple);box-shadow:var(--shadow)}
+.card-top{
+ height:128px;display:flex;flex-direction:column;justify-content:center;
+ align-items:center;text-align:center;position:relative;overflow:hidden;
+ padding:15px;border-bottom:1px solid var(--border)
+}
+.card-top:before,.card-top:after{content:"";position:absolute;border:1px solid #ffffff25;border-radius:50%;width:170px;height:170px}
+.card-top:after{width:115px;height:115px}
+.card-top>*{position:relative;z-index:1}
+.card-top .symbol{font-size:30px;line-height:1.4}
+.card-top h3{font-size:18px;margin:3px 0;font-weight:900;letter-spacing:-.5px}
+.card-top p{font-size:10px;margin:0;opacity:.85}
+.t-music{background:linear-gradient(135deg,#24103d,#8b2b77)}
+.t-jesus{background:linear-gradient(135deg,#273e67,#bb8bba)}
+.t-ai{background:linear-gradient(135deg,#112c4b,#3e7b9b)}
+.t-mono{background:linear-gradient(135deg,#111827,#64748b)}
+.t-reel{background:linear-gradient(135deg,#ed8849,#b53c9d,#4c43a7)}
+.t-media{background:linear-gradient(135deg,#145b75,#5369bd)}
+.t-pose{background:linear-gradient(135deg,#092d43,#126b7c)}
+.t-quantum{background:linear-gradient(135deg,#09152c,#3455a0)}
+.t-data{background:linear-gradient(135deg,#24543a,#9eac4b)}
+.t-web{background:linear-gradient(135deg,#30346c,#6a76ba)}
+.t-3d{background:linear-gradient(135deg,#37194f,#3a83b7)}
+.card-body{padding:16px}
+.card-meta{display:flex;justify-content:space-between;gap:7px;align-items:center}
+.type{font-size:9px;color:var(--muted);letter-spacing:1px;font-weight:800}
+.status{font-size:9px;color:var(--green);background:#42d39b16;border:1px solid #42d39b45;border-radius:20px;padding:3px 7px;white-space:nowrap}
+.status.dev{color:var(--purple);background:#a78bfa14;border-color:#a78bfa44}
+.card-body h3{font-size:14px;line-height:1.45;margin:10px 0 7px}
+.card-body>p{min-height:55px;color:var(--muted);font-size:11px;line-height:1.7;margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0}
+.tags span{font-size:9px;padding:4px 7px;border:1px solid var(--border);background:var(--panel2);border-radius:7px;color:var(--muted)}
+.card-links{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.card-links .btn{font-size:10px;padding:8px 10px;flex:1}
+.empty{display:none;padding:25px;text-align:center;color:var(--muted);font-size:12px}
+.social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.social-card{
+ display:flex;align-items:center;gap:17px;padding:22px;border:1px solid var(--border);
+ border-radius:18px;background:var(--panel);transition:.2s
+}
+.social-card:hover{transform:translateY(-4px);border-color:var(--pink)}
+.social-icon{
+ display:grid;place-items:center;flex-shrink:0;width:62px;height:62px;border-radius:19px;
+ color:white;font-size:26px;background:linear-gradient(135deg,#fd9d58,#d946a7,#7656e8)
+}
+.social-card h3{font-size:15px;margin:0 0 4px}
+.social-card p{font-size:11px;color:var(--muted);margin:0 0 12px}
+.social-card .btn{font-size:10px;padding:8px 11px}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.skill{
+ display:flex;gap:12px;align-items:center;padding:16px;
+ border:1px solid var(--border);border-radius:14px;background:var(--panel)
+}
+.skill-icon{
+ display:grid;place-items:center;width:39px;height:39px;flex-shrink:0;
+ border-radius:12px;background:var(--panel2);color:var(--purple);font-weight:900;font-size:12px
+}
+.skill h3{font-size:12px;margin:0 0 4px}
+.skill p{font-size:10px;color:var(--muted);margin:0}
+.timeline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.timeline-card{padding:19px;border:1px solid var(--border);background:var(--panel);border-radius:15px}
+.timeline-card .year{font-size:10px;color:var(--purple);font-weight:800;letter-spacing:1px}
+.timeline-card h3{font-size:14px;margin:7px 0}
+.timeline-card p{font-size:11px;color:var(--muted);margin:0}
+.cert-list{display:flex;flex-wrap:wrap;gap:10px}
+.cert-list a{
+ display:inline-flex;gap:8px;align-items:center;padding:10px 13px;
+ border:1px solid var(--border);border-radius:10px;background:var(--panel);font-size:11px
+}
+.cert-list a:hover{border-color:var(--purple);color:var(--purple)}
+.contact{
+ text-align:center;padding:65px 0;
+ background:radial-gradient(ellipse at 50% 100%,#7949b333,transparent 65%)
+}
+.contact h2{font-size:clamp(27px,4vw,42px);letter-spacing:-1.5px;margin:0 0 10px}
+.contact p{max-width:560px;margin:0 auto 22px;color:var(--muted);font-size:12px}
+.contact-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:23px}
+.footer{border-top:1px solid var(--border);padding:20px 0;color:var(--muted);font-size:10px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.back-top{font-size:20px;color:var(--purple)}
+[hidden]{display:none!important}
+@media(max-width:950px){
+ .nav{gap:12px}.nav a{font-size:10px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .hero{gap:20px}.skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .site-header{min-height:64px;gap:8px}
+ .brand{font-size:13px}.brand-mark{width:34px;height:34px}
+ .menu-btn{display:grid}.nav{
+ display:none;position:absolute;top:63px;left:0;right:0;padding:15px 5%;
+ background:var(--bg);border-bottom:1px solid var(--border);
+ flex-direction:column;align-items:stretch;gap:0
+ }
+ .nav.open{display:flex}.nav a{padding:10px 0;font-size:12px}
+ .hero{grid-template-columns:1fr;padding-top:32px;gap:22px}
+ .hero-art{min-height:285px;grid-row:1}
+ h1{font-size:43px;letter-spacing:-2px}
+ .hero h2{font-size:14px}.stats{gap:23px}
+ .about-grid,.timeline{grid-template-columns:1fr}
+ .grid{grid-template-columns:1fr}
+ .card-top{height:145px}.card-body>p{min-height:0}
+ .social-grid{grid-template-columns:1fr}
+ .skills{grid-template-columns:1fr}
+ .section{padding:40px 0}
+ .section-head h2{font-size:24px}
+ .toolbar{align-items:stretch;flex-direction:column}
+ .search{width:100%}.filters{gap:6px}
+ .filter{padding:8px 10px}
+ .social-card{padding:17px;gap:12px}
+ .social-icon{width:50px;height:50px}
+ .footer-inner{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+<header class="site-header">
+ <a class="brand" href="#home">
+  <span class="brand-mark">S</span>
+  <span>ShekinaVerse<small>MY DIGITAL UNIVERSE</small></span>
+ </a>
+ <button class="menu-btn" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+ <nav class="nav" id="nav" aria-label="Main navigation">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#creators">Instagram</a>
+  <a href="#skills">Skills</a>
+  <a href="#journey">Journey</a>
+  <a href="#contact">Contact</a>
+ </nav>
+ <div class="header-actions">
+  <a class="icon-btn" href="https://github.com/shekinapilla4809" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+  <button class="icon-btn" id="themeToggle" aria-label="Switch theme" title="Switch dark and light theme">☼</button>
+ </div>
+</header>
+
+<main>
+<section class="hero wrap" id="home">
+ <div>
+  <div class="pill"><span class="pulse"></span> Student · Developer · Digital Creator</div>
+  <p class="eyebrow">WELCOME TO MY WORLD</p>
+  <h1>Hey, I'm<br><span class="gradient">Shekina Pilla.</span></h1>
+  <h2>CSE (Data Science) Student <span class="gradient">|</span> Developer <span class="gradient">|</span> Creator</h2>
+  <p class="description">
+   I turn ideas into digital experiences. I explore web development, Python,
+   data analytics, computer vision, AI-related tools and creative applications.
+   This is my personal space for the things I build, learn and share.
+  </p>
+  <div class="actions">
+   <a class="btn primary" href="#projects">Explore My Universe ↗</a>
+   <a class="btn ghost" href="mailto:shekinapilla@gmail.com">Let's Connect ✉</a>
+  </div>
+  <div class="stats">
+   <div><strong class="gradient">10+</strong><span>Projects & Apps</span></div>
+   <div><strong class="gradient">2</strong><span>Instagram Pages</span></div>
+   <div><strong class="gradient">∞</strong><span>Ideas to Explore</span></div>
+  </div>
+ </div>
+
+ <div class="hero-art" aria-label="Decorative coding panel">
+  <div class="orbit"></div><div class="orbit two"></div>
+  <div class="float f1">⌘ Python · Data</div>
+  <div class="float f2">✦ Create something new</div>
+  <div class="code-card">
+   <div class="code-head"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span>shekina.py</span></div>
+   <pre><span class="c-purple">class</span> <span class="c-blue">MyUniverse</span>:
+  name = <span class="c-green">"Shekina Pilla"</span>
+  interests = [
+    <span class="c-green">"Data Science"</span>,
+    <span class="c-green">"Web Apps"</span>,
+    <span class="c-green">"AI & Vision"</span>,
+    <span class="c-green">"Creative Ideas"</span>
+  ]
+
+  <span class="c-purple">def</span> <span class="c-blue">keep_growing</span>(self):
+    <span class="c-purple">return</span> <span class="c-green">"Learn. Build. Repeat."</span></pre>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="wrap">
+  <div class="section-head"><span class="section-symbol">✦</span><div><p class="eyebrow">A LITTLE ABOUT ME</p><h2>Curious mind. Creative builder.</h2><p class="sub">A little introduction to the person behind the projects.</p></div></div>
+  <div class="about-grid">
+   <div class="about-copy">
+    <p>I'm Shekina Pilla, a Computer Science and Engineering student specializing in Data Science at Aditya College of Engineering and Technology.</p>
+    <p>I enjoy building websites and web applications, exploring data, and experimenting with Python, computer vision and quantum computing. I also maintain my own creative pages for singing and devotional content.</p>
+    <p>My goal is to keep learning, improve my development skills, and turn useful ideas into practical projects. Every project is another opportunity to learn something new.</p>
+    <div class="tags"><span>Learn</span><span>Build</span><span>Experiment</span><span>Grow</span></div>
+   </div>
+   <div class="info-panel">
+    <div class="info-list">
+     <div class="info-row"><span class="info-icon">⌖</span><div><small>Location</small><strong>Kakinada, Andhra Pradesh, India</strong></div></div>
+     <div class="info-row"><span class="info-icon">✉</span><div><small>Email</small><a href="mailto:shekinapilla@gmail.com">shekinapilla@gmail.com</a></div></div>
+     <div class="info-row"><span class="info-icon">in</span><div><small>LinkedIn</small><a href="https://linkedin.com/in/shekina-pilla-4930872b7" target="_blank" rel="noopener noreferrer">Connect professionally ↗</a></div></div>
+     <div class="info-row"><span class="info-icon">GH</span><div><small>GitHub</small><a href="https://github.com/shekinapilla4809" target="_blank" rel="noopener noreferrer">Explore my repositories ↗</a></div></div>
+     
+    </div>
+    <p class="note">Open to learning opportunities, internships and entry-level roles.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="projects">
+ <div class="wrap">
+  <div class="section-head"><span class="section-symbol">▦</span><div><p class="eyebrow">MY DIGITAL WORKSHOP</p><h2>Projects, Websites & Apps</h2><p class="sub">One dashboard. Different ideas. Explore the live applications or source code.</p></div></div>
+
+  <div class="toolbar">
+   <label class="search"><span>⌕</span><input id="projectSearch" type="search" placeholder="Search websites, apps, skills..." aria-label="Search projects"></label>
+   <div class="filters" aria-label="Project categories">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="web">Websites</button>
+    <button class="filter" data-filter="apps">Web Apps</button>
+    <button class="filter" data-filter="ai">AI & Vision</button>
+    <button class="filter" data-filter="data">Data & Quantum</button>
+    <button class="filter" data-filter="creative">Creative</button>
+   </div>
+  </div>
+
+  <div class="grid" id="projectGrid">
+
+   <article class="card" data-category="web creative" data-search="branks3 sing singing music song playback website">
+    <div class="card-top t-music"><div class="symbol">♫</div><h3>BRANKS3.SING</h3><p>Sing · Feel · Share</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">MUSIC WEBSITE</span><span class="status">LIVE</span></div><h3>BRANKS3.SING — Singing Website</h3><p>A music-focused website with song playback and simple navigation for an enjoyable listening experience.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="card-links"><a class="btn primary" href="https://www.branks3-sing.com/" target="_blank" rel="noopener noreferrer">Live Website ↗</a><a class="btn ghost" href="https://github.com/branks3-sing/branks3/" target="_blank" rel="noopener noreferrer">GitHub</a></div></div>
+   </article>
+
+   <article class="card" data-category="web creative" data-search="branks3 with jesus devotional christian worship songs website">
+    <div class="card-top t-jesus"><div class="symbol">✝</div><h3>BRANKS3 With Jesus</h3><p>Worship · Hope · Faith</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">DEVOTIONAL WEBSITE</span><span class="status">LIVE</span></div><h3>BRANKS3 With Jesus</h3><p>A devotional website created to share worship songs and faith-related content through a simple interface.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="card-links"><a class="btn primary" href="https://branks3-with-jesus.netlify.app/" target="_blank" rel="noopener noreferrer">Live Website ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809/branks3-with-jesus" target="_blank" rel="noopener noreferrer">GitHub</a></div></div>
+   </article>
+
+   <article class="card" data-category="apps ai" data-search="cleancut image background remover python streamlit image processing">
+    <div class="card-top t-ai"><div class="symbol">◉</div><h3>CleanCut</h3><p>Background Remover</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">IMAGE TOOL</span><span class="status">LIVE</span></div><h3>CleanCut — Background Remover</h3><p>A Streamlit app for uploading images and removing their backgrounds through an easy-to-use workflow.</p><div class="tags"><span>Python</span><span>Streamlit</span><span>Image Processing</span></div><div class="card-links"><a class="btn primary" href="https://cleancut-bg-remover.streamlit.app/" target="_blank" rel="noopener noreferrer">Open App ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub Profile</a></div></div>
+   </article>
+
+   <article class="card" data-category="apps creative" data-search="mono studio black white monochrome image converter streamlit">
+    <div class="card-top t-mono"><div class="symbol">◐</div><h3>Mono Studio</h3><p>Black & White Converter</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">IMAGE TOOL</span><span class="status">LIVE</span></div><h3>Mono Studio</h3><p>A web application that converts color images into black-and-white images with a simple interface.</p><div class="tags"><span>Python</span><span>Streamlit</span><span>Image Processing</span></div><div class="card-links"><a class="btn primary" href="https://mono-studio.streamlit.app/" target="_blank" rel="noopener noreferrer">Open App ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub Profile</a></div></div>
+   </article>
+
+   <article class="card" data-category="apps creative" data-search="reelsaver instagram reels downloader streamlit media">
+    <div class="card-top t-reel"><div class="symbol">◎</div><h3>ReelSaver</h3><p>Reels Utility</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">MEDIA UTILITY</span><span class="status">LIVE</span></div><h3>ReelSaver</h3><p>A link-based web interface for supported Instagram Reels workflows. Use content you have permission to download.</p><div class="tags"><span>Python</span><span>Streamlit</span><span>Web App</span></div><div class="card-links"><a class="btn primary" href="https://reelsaver-downloader.streamlit.app/" target="_blank" rel="noopener noreferrer">Open App ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub Profile</a></div></div>
+   </article>
+
+   <article class="card" data-category="apps creative" data-search="mediaflow youtube audio video media downloader streamlit">
+    <div class="card-top t-media"><div class="symbol">▶</div><h3>MediaFlow</h3><p>Audio & Video Utility</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">MEDIA UTILITY</span><span class="status">LIVE</span></div><h3>MediaFlow</h3><p>A web interface for supported audio and video workflows. Respect platform rules and content owners' rights.</p><div class="tags"><span>Python</span><span>Streamlit</span><span>Web App</span></div><div class="card-links"><a class="btn primary" href="https://mediaflow-downloader.streamlit.app/" target="_blank" rel="noopener noreferrer">Open App ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub Profile</a></div></div>
+   </article>
+
+   <article class="card" data-category="ai apps" data-search="poseanimator human pose detection computer vision opencv mediapipe python">
+    <div class="card-top t-pose"><div class="symbol">⌁</div><h3>PoseAnimator</h3><p>Human Pose Detection</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">COMPUTER VISION</span><span class="status dev">SOURCE CODE</span></div><h3>PoseAnimator</h3><p>A Python project using OpenCV and MediaPipe to detect human poses and support motion-based animation workflows.</p><div class="tags"><span>Python</span><span>OpenCV</span><span>MediaPipe</span></div><div class="card-links"><a class="btn primary" href="https://github.com/shekinapilla4809/PoseAnimator" target="_blank" rel="noopener noreferrer">View Project ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809/PoseAnimator" target="_blank" rel="noopener noreferrer">GitHub</a></div></div>
+   </article>
+
+   <article class="card" data-category="data ai" data-search="quantum state visualizer AQVH hackathon Qiskit Bloch sphere QASM">
+    <div class="card-top t-quantum"><div class="symbol">⚛</div><h3>Quantum State Visualizer</h3><p>Circuits · Bloch Spheres</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">QUANTUM COMPUTING</span><span class="status dev">SOURCE CODE</span></div><h3>Quantum State Visualizer</h3><p>An interactive quantum visualization project featuring Qiskit, Streamlit, Bloch spheres and QASM upload functionality.</p><div class="tags"><span>Python</span><span>Qiskit</span><span>Streamlit</span></div><div class="card-links"><a class="btn primary" href="https://github.com/shekinapilla4809/Quantum-State-Visualizer-hackathon-project" target="_blank" rel="noopener noreferrer">View Project ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809/Quantum-State-Visualizer-hackathon-project" target="_blank" rel="noopener noreferrer">GitHub</a></div></div>
+   </article>
+
+   <article class="card" data-category="data" data-search="indian agricultural crop production analysis data analytics trends">
+    <div class="card-top t-data"><div class="symbol">⌁</div><h3>Crop Analytics</h3><p>Patterns · Trends · Insights</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">DATA ANALYTICS</span><span class="status dev">SOURCE CODE</span></div><h3>Indian Agricultural Crop Production Analysis</h3><p>Explores agricultural production data to identify patterns and trends and support data-driven insights.</p><div class="tags"><span>Data Analysis</span><span>Python</span><span>Visualization</span></div><div class="card-links"><a class="btn primary" href="https://github.com/shekinapilla/Indian_Agricultural_Crop_Production_Analysis" target="_blank" rel="noopener noreferrer">View Project ↗</a><a class="btn ghost" href="https://github.com/shekinapilla/Indian_Agricultural_Crop_Production_Analysis" target="_blank" rel="noopener noreferrer">GitHub</a></div></div>
+   </article>
+
+   <article class="card" data-category="web" data-search="online booking platform website html css user interface">
+    <div class="card-top t-web"><div class="symbol">▦</div><h3>Online Booking</h3><p>Simple · Clear · Convenient</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">WEB DEVELOPMENT</span><span class="status dev">PROJECT</span></div><h3>Online Booking Platform</h3><p>A booking interface designed with HTML and CSS, focusing on clear navigation and user-friendly page layouts.</p><div class="tags"><span>HTML</span><span>CSS</span><span>UI Design</span></div><div class="card-links"><a class="btn primary" href="mailto:shekinapilla@gmail.com?subject=Online%20Booking%20Platform">Ask About Project ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809" target="_blank" rel="noopener noreferrer">GitHub Profile</a></div></div>
+   </article>
+
+   <article class="card" data-category="creative apps" data-search="3D Animation Studio character animation rigging three js react project">
+    <div class="card-top t-3d"><div class="symbol">◇</div><h3>3D Animation Studio</h3><p>Characters · Motion · Creativity</p></div>
+    <div class="card-body"><div class="card-meta"><span class="type">3D WEB PROJECT</span><span class="status dev">IN DEVELOPMENT</span></div><h3>3D Animation Studio</h3><p>A developing web-app concept for loading 3D characters, working with animation clips, adjusting scenes and exploring character motion.</p><div class="tags"><span>React</span><span>Three.js</span><span>3D Animation</span></div><div class="card-links"><a class="btn primary" href="mailto:shekinapilla@gmail.com?subject=3D%20Animation%20Studio">Project Details ↗</a><a class="btn ghost" href="https://github.com/shekinapilla4809" target="_blank" rel="noopener noreferrer">GitHub Profile</a></div></div>
+   </article>
+
+  </div>
+  <p class="empty" id="noResults">No matching projects. Try a different search or category.</p>
+ </div>
+</section>
+
+<section class="section" id="creators">
+ <div class="wrap">
+  <div class="section-head"><span class="section-symbol">◎</span><div><p class="eyebrow">MY CREATOR SPACE</p><h2>Instagram Pages I Maintain</h2><p class="sub">My creative side beyond code — music, singing and devotional content.</p></div></div>
+  <div class="social-grid">
+   <article class="social-card">
+    <div class="social-icon">♫</div>
+    <div><h3>BRANKS3.SING_ALONG</h3><p>My singing and music content page.</p><a class="btn primary" href="https://www.instagram.com/branks3.sing_alongee/" target="_blank" rel="noopener noreferrer">Visit Instagram ↗</a></div>
+   </article>
+   <article class="social-card">
+    <div class="social-icon">✝</div>
+    <div><h3>BRANKS3 With Jesus</h3><p>My devotional and faith-inspired content page.</p><a class="btn primary" href="https://www.instagram.com/branks3_with_jesus/" target="_blank" rel="noopener noreferrer">Visit Instagram ↗</a></div>
+   </article>
+  </div>
+  <p class="note">Instagram opens in a new tab. Posts and follower counts are not embedded on this dashboard.</p>
+ </div>
+</section>
+
+<section class="section" id="skills">
+ <div class="wrap">
+  <div class="section-head"><span class="section-symbol">⌘</span><div><p class="eyebrow">MY TOOLKIT</p><h2>Skills & Technologies</h2><p class="sub">Technologies and tools I have worked with or explored in my projects.</p></div></div>
+  <div class="skills">
+   <div class="skill"><span class="skill-icon">Py</span><div><h3>Programming</h3><p>Python · SQL · JavaScript</p></div></div>
+   <div class="skill"><span class="skill-icon">{"</>"}</span><div><h3>Web Development</h3><p>HTML · CSS · Django · Streamlit</p></div></div>
+   <div class="skill"><span class="skill-icon">▥</span><div><h3>Data Analytics</h3><p>Data Analysis · Data Cleaning · Tableau</p></div></div>
+   <div class="skill"><span class="skill-icon">◎</span><div><h3>Computer Vision</h3><p>OpenCV · MediaPipe · Image Processing</p></div></div>
+   <div class="skill"><span class="skill-icon">∑</span><div><h3>Libraries</h3><p>NumPy · Pandas · Matplotlib · Qiskit</p></div></div>
+   <div class="skill"><span class="skill-icon">GH</span><div><h3>Developer Tools</h3><p>Git · GitHub · VS Code</p></div></div>
+   <div class="skill"><span class="skill-icon">DB</span><div><h3>Core Knowledge</h3><p>DBMS · Problem Solving</p></div></div>
+   <div class="skill"><span class="skill-icon">✦</span><div><h3>Personal Skills</h3><p>Adaptability · Self-Learning · Time Management</p></div></div>
+   <div class="skill"><span class="skill-icon">✧</span><div><h3>Areas of Interest</h3><p>AI · Machine Learning · Data Science</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="journey">
+ <div class="wrap">
+  <div class="section-head"><span class="section-symbol">↗</span><div><p class="eyebrow">MY LEARNING JOURNEY</p><h2>Education & Experience</h2><p class="sub">The foundations behind my technical journey.</p></div></div>
+  <div class="timeline">
+   <article class="timeline-card"><span class="year">2023 — PRESENT</span><h3>B.Tech — CSE (Data Science)</h3><p>Aditya College of Engineering and Technology. CGPA: 7.36/10, as provided in my resume.</p></article>
+   <article class="timeline-card"><span class="year">2026 · 2 MONTHS</span><h3>Data Analytics with Tableau</h3><p>Virtual internship with SmartBridge Educational Services in collaboration with APSCHE. Completed a 120-hour program.</p></article>
+   <article class="timeline-card"><span class="year">MAY — JULY 2025</span><h3>Web Development Using Django</h3><p>Two-month Summer Online Internship Program through Andhra Pradesh State Skill Development Corporation (APSSDC).</p></article>
+   <article class="timeline-card"><span class="year">HACKATHON</span><h3>Quantum Valley Hackathon Project</h3><p>Worked on Quantum State Visualizer using Qiskit and Streamlit. See the project and certificates for the details of recognition.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="certificates">
+ <div class="wrap">
+  <div class="section-head"><span class="section-symbol">✧</span><div><p class="eyebrow">MILESTONES</p><h2>Certificates & Achievements</h2><p class="sub">Open the available certificate files from my GitHub certificate repository.</p></div></div>
+  <div class="cert-list">
+   <a href="https://github.com/shekinapilla/my-certificates/blob/main/Basics%20of%20Business%20Communication.pdf" target="_blank" rel="noopener noreferrer">↗ Business Communication</a>
+   <a href="https://github.com/shekinapilla/my-certificates/blob/main/Google%20Cloud%20Computing%20Foundations.pdf" target="_blank" rel="noopener noreferrer">↗ Google Cloud Computing Foundations</a>
+   <a href="https://github.com/shekinapilla/my-certificates/blob/main/django.jpg.jpeg" target="_blank" rel="noopener noreferrer">↗ APSSDC Django Internship</a>
+   <a href="https://github.com/shekinapilla/my-certificates/blob/main/data%20analytics%20with%20tableau.jpeg" target="_blank" rel="noopener noreferrer">↗ Data Analytics with Tableau</a>
+   <a href="https://github.com/shekinapilla/my-certificates/blob/main/semi%20final.jpg.jpeg" target="_blank" rel="noopener noreferrer">↗ AQVH Semi-Finalist</a>
+   <a href="https://github.com/shekinapilla/my-certificates/blob/main/semifinalwinner.jpg.jpeg" target="_blank" rel="noopener noreferrer">↗ AQVH Certificate</a>
+   <a href="https://github.com/shekinapilla/my-certificates/blob/main/wiser.jpg.jpeg" target="_blank" rel="noopener noreferrer">↗ Quantum Program Certificate</a>
+  </div>
+ </div>
+</section>
+
+<section class="contact" id="contact">
+ <div class="wrap">
+  <p class="eyebrow">LET'S BUILD SOMETHING</p>
+  <h2>Have an idea?<br><span class="gradient">Let's connect.</span></h2>
+  <p>I'm interested in learning opportunities, internships, entry-level roles and creative technical projects. Feel free to reach out.</p>
+  <a class="btn primary" href="mailto:shekinapilla@gmail.com?subject=Portfolio%20Contact">Send Me an Email ↗</a>
+  <div class="contact-links">
+   <a class="btn ghost" href="https://github.com/shekinapilla4809" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+   <a class="btn ghost" href="https://linkedin.com/in/shekina-pilla-4930872b7" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+   <a class="btn ghost" href="https://www.instagram.com/branks3.sing_alongee/" target="_blank" rel="noopener noreferrer">Instagram — Music ↗</a>
+   <a class="btn ghost" href="https://www.instagram.com/branks3_with_jesus/" target="_blank" rel="noopener noreferrer">Instagram — Devotional ↗</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="footer">
+ <div class="wrap footer-inner">
+  <span>© <span id="year"></span> Shekina Pilla · ShekinaVerse</span>
+  <span>Learn ✦ Build ✦ Create ✦ Grow</span>
+  <a class="back-top" href="#home" aria-label="Back to top">↑ Back to top</a>
+ </div>
+</footer>
+
+<script>
+const body = document.body;
+const themeToggle = document.getElementById("themeToggle");
+const savedTheme = localStorage.getItem("shekinaverse-theme");
+
+if (savedTheme === "light") body.classList.add("light");
+updateThemeButton();
+
+themeToggle.addEventListener("click", () => {
+ body.classList.toggle("light");
+ localStorage.setItem(
+  "shekinaverse-theme",
+  body.classList.contains("light") ? "light" : "dark"
+ );
+ updateThemeButton();
+});
+
+function updateThemeButton() {
+ const light = body.classList.contains("light");
+ themeToggle.textContent = light ? "☾" : "☼";
+ themeToggle.title = light ? "Switch to dark theme" : "Switch to light theme";
+ themeToggle.setAttribute("aria-label", themeToggle.title);
+}
+
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.getElementById("nav");
+
+menuToggle.addEventListener("click", () => {
+ const opened = nav.classList.toggle("open");
+ menuToggle.setAttribute("aria-expanded", String(opened));
+ menuToggle.setAttribute("aria-label", opened ? "Close navigation" : "Open navigation");
+ menuToggle.textContent = opened ? "✕" : "☰";
+});
+
+nav.querySelectorAll("a").forEach(link => {
+ link.addEventListener("click", () => {
+  nav.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation");
+  menuToggle.textContent = "☰";
+ });
+});
+
+let activeFilter = "all";
+const searchInput = document.getElementById("projectSearch");
+const filterButtons = document.querySelectorAll("[data-filter]");
+const cards = document.querySelectorAll(".card");
+const noResults = document.getElementById("noResults");
+
+function filterProjects() {
+ const term = searchInput.value.trim().toLowerCase();
+ let visible = 0;
+
+ cards.forEach(card => {
+  const categories = card.dataset.category.split(" ");
+  const searchable = (card.dataset.search + " " + card.innerText).toLowerCase();
+  const categoryMatch = activeFilter === "all" || categories.includes(activeFilter);
+  const searchMatch = searchable.includes(term);
+  const show = categoryMatch && searchMatch;
+
+  card.hidden = !show;
+  if (show) visible++;
+ });
+
+ noResults.style.display = visible ? "none" : "block";
+}
+
+filterButtons.forEach(button => {
+ button.addEventListener("click", () => {
+  activeFilter = button.dataset.filter;
+  filterButtons.forEach(item => item.classList.toggle("active", item === button));
+  filterProjects();
+ });
+});
+
+searchInput.addEventListener("input", filterProjects);
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
